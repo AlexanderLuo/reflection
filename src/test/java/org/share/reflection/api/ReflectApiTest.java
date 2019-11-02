@@ -3,6 +3,9 @@ package org.share.reflection.api;
 import org.junit.Assert;
 import org.junit.Test;
 import org.share.reflection.UserEntity;
+import work.share.reflection.api.ClassReflector;
+import work.share.reflection.api.ObjectReflector;
+import work.share.reflection.api.ReflectApi;
 
 public class ReflectApiTest {
 
