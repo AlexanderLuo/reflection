@@ -1,7 +1,6 @@
 package org.share.reflection;
 
 
-
 public class UserEntity {
     private int age;
     private String name;

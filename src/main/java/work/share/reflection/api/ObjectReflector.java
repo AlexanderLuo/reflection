@@ -1,7 +1,6 @@
 package work.share.reflection.api;
 
 
-
 public interface ObjectReflector extends Reflector {
 
 
@@ -9,10 +8,8 @@ public interface ObjectReflector extends Reflector {
 
 
     Object getValue(String name);
+
     void setValue(String name, Object value);
-
-
-
 
 
 //    /**
@@ -24,6 +21,7 @@ public interface ObjectReflector extends Reflector {
 
     /**
      * 反射调用方法
+     *
      * @param methodName
      * @param args
      * @return

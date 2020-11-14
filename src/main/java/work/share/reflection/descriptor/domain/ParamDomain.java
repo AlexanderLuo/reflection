@@ -12,9 +12,6 @@ public class ParamDomain {
     private Annotation[] annotations;
 
 
-
-
-
     public Class<?> getType() {
         return type;
     }

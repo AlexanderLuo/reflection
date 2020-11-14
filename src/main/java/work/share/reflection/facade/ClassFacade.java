@@ -1,17 +1,17 @@
 /**
- *    Copyright 2009-2018 the original author or authors.
- *
- *    Licensed under the Apache License, Version 2.0 (the "License");
- *    you may not use this file except in compliance with the License.
- *    You may obtain a copy of the License at
- *
- *       http://www.apache.org/licenses/LICENSE-2.0
- *
- *    Unless required by applicable law or agreed to in writing, software
- *    distributed under the License is distributed on an "AS IS" BASIS,
- *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *    See the License for the specific language governing permissions and
- *    limitations under the License.
+ * Copyright 2009-2018 the original author or authors.
+ * <p>
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package work.share.reflection.facade;
 
@@ -36,7 +36,9 @@ import java.util.Collection;
  */
 public class ClassFacade implements ClassReflector {
 
-    static class NullClass { }
+    static class NullClass {
+    }
+
     private final ReflectorDelegate reflectorDelegate;
 
     public ClassFacade(Class<?> type) {
@@ -48,11 +50,11 @@ public class ClassFacade implements ClassReflector {
         Class<?> propType = reflectorDelegate.getGetterType(name);
         return new ClassFacade(propType);
     }
+
     private ClassFacade metaClassForProperty(PropertyTokenizer prop) {
         Class<?> propType = getGetterType(prop);
         return new ClassFacade(propType);
     }
-
 
 
     @Override
@@ -102,6 +104,7 @@ public class ClassFacade implements ClassReflector {
             return reflectorDelegate.getSetterType(prop.getName());
         }
     }
+
     @Override
     public Class<?> getGetterType(String name) {
         PropertyTokenizer prop = new PropertyTokenizer(name);
@@ -114,10 +117,9 @@ public class ClassFacade implements ClassReflector {
     }
 
 
-
     /********************************************************************************************************************
      *  About Method
-    ********************************************************************************************************************/
+     ********************************************************************************************************************/
     @Override
     public Invoker getGetInvoker(String name) {
         return reflectorDelegate.getGetInvoker(name);
@@ -136,7 +138,7 @@ public class ClassFacade implements ClassReflector {
 
     /********************************************************************************************************************
      *  Real Work
-    ********************************************************************************************************************/
+     ********************************************************************************************************************/
     private Class<?> getGetterType(PropertyTokenizer prop) {
         Class<?> type = reflectorDelegate.getGetterType(prop.getName());
         if (prop.getIndex() != null && Collection.class.isAssignableFrom(type)) {
@@ -160,9 +162,9 @@ public class ClassFacade implements ClassReflector {
         try {
             Invoker invoker = reflectorDelegate.getGetInvoker(propertyName);
             if (invoker instanceof MethodInvoker) {
-                 Field _method = MethodInvoker.class.getDeclaredField("method");
+                Field _method = MethodInvoker.class.getDeclaredField("method");
                 _method.setAccessible(true);
-                 Method method = (Method) _method.get(invoker);
+                Method method = (Method) _method.get(invoker);
                 return TypeParameterResolver.resolveReturnType(method, reflectorDelegate.getType());
             } else if (invoker instanceof GetFieldInvoker) {
                 Field _field = GetFieldInvoker.class.getDeclaredField("field");
@@ -174,8 +176,6 @@ public class ClassFacade implements ClassReflector {
         }
         return null;
     }
-
-
 
 
 }

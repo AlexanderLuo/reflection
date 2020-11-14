@@ -12,8 +12,8 @@ public class ReflectApi {
 
     }
 
-    public static ObjectReflector forObject(Object object){
-        return  ObjectFacade.forObject(object);
+    public static ObjectReflector forObject(Object object) {
+        return ObjectFacade.forObject(object);
     }
 
 }

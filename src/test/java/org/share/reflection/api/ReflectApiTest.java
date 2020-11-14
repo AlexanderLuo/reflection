@@ -11,6 +11,7 @@ public class ReflectApiTest {
 
 
     static UserEntity userEntity = new UserEntity();
+
     static {
         userEntity.setAge(123);
         userEntity.setName("tester");
@@ -18,19 +19,18 @@ public class ReflectApiTest {
     }
 
     @Test
-    public void forObject(){
+    public void forObject() {
 
         ObjectReflector objectOperator = ReflectApi.forObject(userEntity);
-        Assert.assertEquals(objectOperator.getValue("age"),123);
-        Assert.assertEquals(objectOperator.getValue("name"),"tester");
-        Assert.assertEquals(objectOperator.getValue("addr"),"hk");
+        Assert.assertEquals(objectOperator.getValue("age"), 123);
+        Assert.assertEquals(objectOperator.getValue("name"), "tester");
+        Assert.assertEquals(objectOperator.getValue("addr"), "hk");
 
     }
 
 
-
     @Test
-    public void forClass(){
+    public void forClass() {
         ClassReflector operator = ReflectApi.forClass(UserEntity.class);
         Assert.assertTrue(operator.hasGetter("age"));
         Assert.assertTrue(operator.hasGetter("name"));

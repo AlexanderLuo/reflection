@@ -1,17 +1,17 @@
 /**
- *    Copyright 2009-2019 the original author or authors.
- *
- *    Licensed under the Apache License, Version 2.0 (the "License");
- *    you may not use this file except in compliance with the License.
- *    You may obtain a copy of the License at
- *
- *       http://www.apache.org/licenses/LICENSE-2.0
- *
- *    Unless required by applicable law or agreed to in writing, software
- *    distributed under the License is distributed on an "AS IS" BASIS,
- *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *    See the License for the specific language governing permissions and
- *    limitations under the License.
+ * Copyright 2009-2019 the original author or authors.
+ * <p>
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package work.share.reflection.facade;
 
@@ -34,7 +34,6 @@ public class ObjectFacade extends ClassFacade implements ObjectReflector {
     private final ObjectWrapper objectWrapper;
 
 
-
     public ObjectFacade(Object object) {
         super(object.getClass());
         this.originalObject = object;
@@ -49,8 +48,7 @@ public class ObjectFacade extends ClassFacade implements ObjectReflector {
         else
             this.objectWrapper = new BeanWrapper(this, object);
 
-  }
-
+    }
 
 
     public ObjectFacade metaObjectForProperty(String name) {
@@ -59,26 +57,23 @@ public class ObjectFacade extends ClassFacade implements ObjectReflector {
     }
 
 
+    /********************************************************************************************************************
+     *
+     ********************************************************************************************************************/
 
-
-
-  /********************************************************************************************************************
-   *
-  ********************************************************************************************************************/
-
-  public Object getValue(String name) {
-      PropertyTokenizer prop = new PropertyTokenizer(name);
-      if (prop.hasNext()) {
-          ObjectFacade metaValue = metaObjectForProperty(prop.getIndexedName());
-          if (metaValue == NULL) {
-              return null;
-          } else {
-              return metaValue.getValue(prop.getChildren());
-          }
-      } else {
-          return objectWrapper.get(prop);
-      }
-  }
+    public Object getValue(String name) {
+        PropertyTokenizer prop = new PropertyTokenizer(name);
+        if (prop.hasNext()) {
+            ObjectFacade metaValue = metaObjectForProperty(prop.getIndexedName());
+            if (metaValue == NULL) {
+                return null;
+            } else {
+                return metaValue.getValue(prop.getChildren());
+            }
+        } else {
+            return objectWrapper.get(prop);
+        }
+    }
 
     public void setValue(String name, Object value) {
         PropertyTokenizer prop = new PropertyTokenizer(name);
@@ -105,23 +100,17 @@ public class ObjectFacade extends ClassFacade implements ObjectReflector {
     }
 
 
-
-
-
-
     @Override
     public Object call(String methodName, Object... args) {
-       return null;
+        return null;
     }
 
 
-
-    public static ObjectFacade forObject(Object object){
+    public static ObjectFacade forObject(Object object) {
         if (object == null)
             return NULL;
         return new ObjectFacade(object);
     }
-
 
 
 }
