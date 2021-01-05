@@ -19,13 +19,6 @@ public interface ObjectReflector extends Reflector {
 //    void add(Object element);
 
 
-    /**
-     * 反射调用方法
-     *
-     * @param methodName
-     * @param args
-     * @return
-     */
     Object call(String methodName, Object... args);
 
 }
